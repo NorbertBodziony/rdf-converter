@@ -1,4 +1,5 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles'
+import { colors } from '@static/theme'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -9,7 +10,8 @@ const useStyles = makeStyles(() =>
       background: '#030313',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
-      backgroundPosition: 'center'
+      backgroundPosition: 'center',
+      padding: 16
     },
 
     dots: {
@@ -18,7 +20,26 @@ const useStyles = makeStyles(() =>
       // width: 600,
       // height: 600
     },
-    header: { margin: 20 }
+    header: { margin: 20 },
+    input: {
+      backgroundColor: colors.gray.skeletonBackground,
+      borderTopLeftRadius: 15,
+      borderTopRightRadius: 15,
+      width: '100%'
+    },
+    select: {
+      width: 300,
+      borderColor: colors.green.main,
+      backgroundColor: colors.gray.skeletonBackground,
+      borderRadius: 5
+      // borderStyle: 'solid'
+    },
+    option: {
+      color: colors.green.main
+    },
+    selectMenu: {
+      backgroundColor: colors.black.kinda
+    }
   })
 )
 export default useStyles
