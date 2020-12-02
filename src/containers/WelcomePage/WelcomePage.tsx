@@ -49,6 +49,7 @@ const WelcomePage: React.FC = () => {
   const classes = useStyles()
   const [rdf, setRdf] = useState(str)
   const [jsonld, setJsonld] = useState('')
+  const [error, setError] = useState('')
   const [outputType, setOutputType] = useState<typeof AllTypes[number]>(JSONLDContentType)
 
   const convert = () => {
@@ -59,29 +60,27 @@ const WelcomePage: React.FC = () => {
       serialize(null as any, store, baseUrl, outputType, (err: any, jsonldData: any) => {
         if (err) {
           console.log(err)
+          setError('Invalid RDF syntax')
 
           return
         }
         if (jsonldData.includes('error')) {
           console.log('error')
+          setError('Invalid RDF syntax')
           return
         }
         try {
           const parsed = JSON.stringify(JSON.parse(jsonldData), null, 2)
           setJsonld(parsed)
+          setError('')
         } catch (error) {
           setJsonld(jsonldData)
+          setError('')
         }
-      })
-      serialize(null as any, store, baseUrl, N3ContentType, (err: any, jsonldData: any) => {
-        if (err) {
-          return
-        }
-        console.log(jsonldData)
-        // const parsed = JSON.stringify(JSON.parse(jsonldData), null, 2)
       })
     } catch (error) {
       console.log(error)
+      setError('Invalid RDF syntax')
     }
   }
   return (
@@ -122,6 +121,7 @@ const WelcomePage: React.FC = () => {
           <Grid item xs>
             <TextField
               label='RDF'
+              error={!!error}
               multiline
               rows={20}
               value={rdf}
@@ -132,6 +132,11 @@ const WelcomePage: React.FC = () => {
               defaultValue='Default Value'
               variant='filled'
             />
+            {error && (
+              <Typography variant='h5' style={{ color: 'red' }}>
+                {error}
+              </Typography>
+            )}
           </Grid>
           <Grid item xs>
             <TextField
