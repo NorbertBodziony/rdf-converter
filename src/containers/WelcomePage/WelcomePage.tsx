@@ -19,7 +19,6 @@ const RDFXMLContentType = 'application/rdf+xml'
 const SPARQLUpdateContentType = 'application/sparql-update'
 const TurtleContentType = 'text/turtle'
 const TurtleLegacyContentType = 'application/x-turtle'
-const XHTMLContentType = 'application/xhtml+xml'
 const AllTypes = [
   HTMLContentType,
   JSONLDContentType,
@@ -30,7 +29,6 @@ const AllTypes = [
   RDFXMLContentType,
   SPARQLUpdateContentType,
   TurtleContentType,
-  XHTMLContentType,
   TurtleLegacyContentType,
   NQuadsContentType
 ]
